@@ -16,12 +16,18 @@ constexpr auto recursive_chop(int target,
     -> std::optional<size_t> {
   if (elements.empty())
     return {};
+  if (elements.size() == 1) {
+    if (elements[0] == target)
+      return {0};
+    else
+      return {};
+  }
   const auto pivot_index = elements.size() / 2;
   const auto pivot_element = elements[pivot_index];
 
   if (pivot_element == target) {
     return {pivot_index};
-  } else if (pivot_element < target) {
+  } else if (target < pivot_element) {
     return recursive_chop(target, elements.subspan(0, pivot_index));
   } else {
     return recursive_chop(target, elements.subspan(pivot_index))

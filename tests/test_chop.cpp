@@ -1,7 +1,8 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 
-#include "../src/chop.h"
+#include "chop.h"
+#include "optional_printer.h"
 #include <array>
 #include <optional>
 #include <span>
