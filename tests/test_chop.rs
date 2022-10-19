@@ -1,4 +1,4 @@
-use taka::chop::{functional_chop, imperative_chop, recursive_chop};
+use kata::chop::{functional_chop, imperative_chop, recursive_chop};
 
 #[test]
 fn test_functional_chop() {

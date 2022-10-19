@@ -34,5 +34,8 @@ template <class chop_t> void test_chop(chop_t chop_function) {
   CHECK_EQ(std::nullopt, chop_function(8, std::to_array({1, 3, 5, 7})));
 }
 } // namespace
-TEST_CASE("Chop") { test_chop(&chop); }
+TEST_CASE("Chop") {
+  SUBCASE("Ranges") { test_chop(&range_chop); }
+  SUBCASE("Recursive") { test_chop(&recursive_chop); }
+}
 } // namespace kata::test
