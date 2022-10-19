@@ -1,8 +1,13 @@
-use taka::chop::functional_chop;
+use taka::chop::{functional_chop, recursive_chop};
 
 #[test]
 fn test_functional_chop() {
     test_chop(functional_chop);
+}
+
+#[test]
+fn test_imperative_chop() {
+    test_chop(recursive_chop);
 }
 
 fn test_chop(chop: fn(i32, &[i32]) -> Option<usize>) {
