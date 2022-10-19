@@ -22,8 +22,32 @@ pub fn recursive_chop(target: i32, elements: &[i32]) -> Option<usize> {
                 x if x > pivot_element => {
                     recursive_chop(target, &elements[pivot_index..]).map(|i| pivot_index + i)
                 }
-                _ => panic!("Unreachable"),
+                _ => unreachable!("Match is exhaustive")
             }
+        }
+    }
+}
+
+pub fn imperative_chop(target: i32, elements: &[i32]) -> Option<usize> {
+    let mut lower_index = 0;
+    let mut upper_index = elements.len();
+    loop {
+        if lower_index == upper_index {
+            return None;
+        } else if lower_index + 1 == upper_index {
+            if elements[lower_index] == target {
+                return Some(lower_index);
+            } else {
+                return None;
+            }
+        }
+        let pivot_index = lower_index + (upper_index - lower_index) / 2;
+        let pivot_element = elements[pivot_index];
+        match target {
+            x if x < pivot_element => upper_index = pivot_index,
+            x if x == pivot_element => return Some(pivot_index),
+            x if x > pivot_element => lower_index = pivot_index,
+            _ => unreachable!("Match is exhaustive")
         }
     }
 }
